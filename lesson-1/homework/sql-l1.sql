@@ -9,11 +9,11 @@ table = jadval ma'lumotlarni foydalanuvchi uchun qulay formatda ko'rsatilishi
 
 Question 2
 
-DQL = Data Query Language
-DML=  Data Manipulation Language
-DDL = Data Defition Language
-DCL = Data Control Language
-TCL = Transaction Control Language
+DQL = Data Query Language -> Purpose: Used to query (retrieve) data from a database.
+DML=  Data Manipulation Language -> Purpose: Used to manipulate (insert, update, delete) data stored in tables.
+DDL = Data Defition Language -> Purpose: Defines the structure of database objects like tables, views, indexes, etc.
+DCL = Data Control Language -> Purpose: Controls access to data (permissions, security).
+TCL = Transaction Control Language -> Purpose: Manages transactions in a database (group of DML statements).
 
 Question 3
 
