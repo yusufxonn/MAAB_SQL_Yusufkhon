@@ -208,4 +208,4 @@ alter column Price float
 --task 9
 
 alter table Inventory
-add ProductCode int Identity (100, 5) 
+add ProductCode int Identity (1000, 5) 
