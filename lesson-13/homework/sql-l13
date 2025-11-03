@@ -1,0 +1,97 @@
+select concat(employee_id, '-', first_name, ' ', last_name) as "employee info"
+from employees
+where employee_id = 100;
+
+update employees
+set phone_number = replace(phone_number, '124', '999');
+
+select * from Employees
+
+select FIRST_NAME as "first name",
+       length(FIRST_NAME) as "name length"
+from employees
+where first_name like 'a%' or first_name like 'j%' or first_name like 'm%'
+order by first_name;
+
+select manager_id,
+       sum(salary) as total_salary
+from employees
+where manager_id is not null
+group by manager_id
+order by manager_id;
+
+select year,
+       greatest(max1, max2, max3) as highest_value
+from testmax;
+
+select *
+from cinema
+where mod(id, 2) = 1 and description <> 'boring';
+
+select *
+from singleorder
+order by (case when id = 0 then 1 else 0 end), id;
+
+select coalesce(ssn, passportid, itin) as firstnonnull
+from person;
+
+select 
+  substring_index(fullname, ' ', 1) as firstname,
+  case 
+    when length(fullname) - length(replace(fullname, ' ', '')) >= 2 
+    then substring_index(substring_index(fullname, ' ', 2), ' ', -1)
+    else null 
+  end as middlename,
+  substring_index(fullname, ' ', -1) as lastname
+from students;
+
+select *
+from orders
+where customerid in (
+    select customerid from orders where deliverystate = 'california'
+)
+and deliverystate = 'texas';
+
+select group_concat(column_name separator ', ') as concatenated_values
+from dmltable;
+
+select first_name, last_name
+from employees
+where length(lower(concat(first_name, last_name))) 
+    - length(replace(lower(concat(first_name, last_name)), 'a', '')) >= 3;
+
+select department_id,
+       count(*) as total_employees,
+       sum(case when datediff(curdate(), hire_date) / 365 > 3 then 1 else 0 end) as over3years,
+       round(
+         (sum(case when datediff(curdate(), hire_date) / 365 > 3 then 1 else 0 end) / count(*)) * 100, 2
+       ) as percentage_over3years
+from employees
+group by department_id;
+
+select studentid,
+       score,
+       sum(score) over (order by studentid) as cumulativescore
+from students;
+
+select * from Students
+
+select s1.FullName, s1.birthdate
+from students s1
+join students s2 
+  on s1.birthdate = s2.birthdate and s1.studentid <> s2.studentid
+order by s1.birthdate;
+
+select 
+  least(playera, playerb) as player1,
+  greatest(playera, playerb) as player2,
+  sum(score) as totalscore
+from playerscores
+group by least(playera, playerb), greatest(playera, playerb);
+
+select
+  regexp_replace('tf56sd#%oqh', '[^A-Z]', '') as uppercase,
+  regexp_replace('tf56sd#%oqh', '[^a-z]', '') as lowercase,
+  regexp_replace('tf56sd#%oqh', '[^0-9]', '') as numbers,
+  regexp_replace('tf56sd#%oqh', '[A-Za-z0-9]', '') as others;
+
